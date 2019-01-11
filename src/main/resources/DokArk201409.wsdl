@@ -1,0 +1,507 @@
+<wsdl:definitions targetNamespace="http://services.agresso.com/DocArchiveService/DocArchiveV201409" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://services.agresso.com/DocArchiveService/DocArchiveV201409" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/">
+   <wsdl:documentation>Document Archive web service, version 201409</wsdl:documentation>
+   <wsdl:types>
+      <s:schema elementFormDefault="qualified" targetNamespace="http://services.agresso.com/DocArchiveService/DocArchiveV201409">
+         <s:element name="GetDocumentTypes">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:DocumentTypeRequest"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="credentials" type="tns:WSCredentials"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:complexType name="DocumentTypeRequest">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="KeyId" type="s:string"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="WSCredentials">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Client" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string"/>
+            </s:sequence>
+         </s:complexType>
+         <s:element name="GetDocumentTypesResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="GetDocumentTypesResult" type="tns:DocumentTypeResponse"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:complexType name="DocumentTypeResponse">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="Response" type="tns:Response"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocTypes" type="tns:ArrayOfDocumentType"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="Response">
+            <s:sequence>
+               <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:int"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Source" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Version" type="s:string"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="ArrayOfDocumentType">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentType" nillable="true" type="tns:DocumentType"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="DocumentType">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocKey" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocKeyId" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocSystemId" type="s:string"/>
+               <s:element minOccurs="1" maxOccurs="1" name="MaxKB" type="s:int"/>
+               <s:element minOccurs="1" maxOccurs="1" name="Priority" type="s:int"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Indexes" type="tns:ArrayOfIndex"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="ArrayOfIndex">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="unbounded" name="Index" nillable="true" type="tns:Index"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="Index">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="AttributeId" type="s:string"/>
+               <s:element minOccurs="1" maxOccurs="1" name="DataLength" type="s:int"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DataType" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DefaultValue" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocKeyFlag" type="s:string"/>
+               <s:element minOccurs="1" maxOccurs="1" name="IndexKeyFlag" type="s:boolean"/>
+               <s:element minOccurs="1" maxOccurs="1" name="SequenceNo" type="s:int"/>
+            </s:sequence>
+         </s:complexType>
+         <s:element name="GetDocumentProperties">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:DocumentPropertiesRequest"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="credentials" type="tns:WSCredentials"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:complexType name="DocumentPropertiesRequest">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="DocId" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string"/>
+               <s:element minOccurs="1" maxOccurs="1" name="GetIndexValues" type="s:boolean"/>
+               <s:element minOccurs="0" maxOccurs="1" name="IndexValues" type="tns:ArrayOfString"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="ArrayOfString">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string"/>
+            </s:sequence>
+         </s:complexType>
+         <s:element name="GetDocumentPropertiesResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="GetDocumentPropertiesResult" type="tns:DocumentPropertiesResponse"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:complexType name="DocumentPropertiesResponse">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="Response" type="tns:Response"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Properties" type="tns:ArrayOfDocumentProperties"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="ArrayOfDocumentProperties">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="unbounded" name="DocumentProperties" nillable="true" type="tns:DocumentProperties"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="DocumentProperties">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="DocId" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="MimeType" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+               <s:element minOccurs="1" maxOccurs="1" name="LastRevision" type="s:int"/>
+               <s:element minOccurs="1" maxOccurs="1" name="LastUpdate" type="s:dateTime"/>
+               <s:element minOccurs="0" maxOccurs="1" name="IndexValues" type="tns:ArrayOfString"/>
+            </s:sequence>
+         </s:complexType>
+         <s:element name="GetDocumentRevision">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:DocumentRequest"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="credentials" type="tns:WSCredentials"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:complexType name="DocumentRequest">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="DocId" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string"/>
+               <s:element minOccurs="1" maxOccurs="1" name="RevisionNo" type="s:long"/>
+               <s:element minOccurs="1" maxOccurs="1" name="PageNo" type="s:long"/>
+            </s:sequence>
+         </s:complexType>
+         <s:element name="GetDocumentRevisionResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="GetDocumentRevisionResult" type="tns:DocumentRevisionResponse"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:complexType name="DocumentRevisionResponse">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="Response" type="tns:Response"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Revision" type="tns:DocumentRevision"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="DocumentRevision">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="DocId" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="IndexValues" type="tns:ArrayOfString"/>
+               <s:element minOccurs="1" maxOccurs="1" name="RevisionNo" type="s:int"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string"/>
+               <s:element minOccurs="1" maxOccurs="1" name="RevisionDate" type="s:dateTime"/>
+               <s:element minOccurs="0" maxOccurs="1" name="FileName" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="FileContent" type="s:string"/>
+            </s:sequence>
+         </s:complexType>
+         <s:element name="AddDocument">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="newDocument" type="tns:DocumentRevision"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="credentials" type="tns:WSCredentials"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="AddDocumentResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="AddDocumentResult" type="tns:DocumentPropertiesResponse"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="CheckIn">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:DocumentRevision"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="credentials" type="tns:WSCredentials"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="CheckInResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="CheckInResult" type="tns:Response"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="CheckOut">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:DocumentRequest"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="credentials" type="tns:WSCredentials"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="CheckOutResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="CheckOutResult" type="tns:DocumentRevisionResponse"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="CancelCheckOut">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:DocumentRequest"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="credentials" type="tns:WSCredentials"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="CancelCheckOutResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="CancelCheckOutResult" type="tns:Response"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="AddDocumentLink">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:DocumentPropertiesRequest"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="credentials" type="tns:WSCredentials"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="AddDocumentLinkResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="AddDocumentLinkResult" type="tns:Response"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="SetAdditionalIndexes">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="request" type="tns:AdditionalIndexesRequest"/>
+                  <s:element minOccurs="0" maxOccurs="1" name="credentials" type="tns:WSCredentials"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:complexType name="AdditionalIndexesRequest">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="DocId" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string"/>
+               <s:element minOccurs="0" maxOccurs="1" name="IndexesValues" type="tns:ArrayOfIndexValue"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="ArrayOfIndexValue">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="unbounded" name="IndexValue" nillable="true" type="tns:IndexValue"/>
+            </s:sequence>
+         </s:complexType>
+         <s:complexType name="IndexValue">
+            <s:sequence>
+               <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string"/>
+               <s:element minOccurs="1" maxOccurs="1" name="SequenceNo" type="s:int"/>
+            </s:sequence>
+         </s:complexType>
+         <s:element name="SetAdditionalIndexesResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="SetAdditionalIndexesResult" type="tns:Response"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+         <s:element name="About">
+            <s:complexType/>
+         </s:element>
+         <s:element name="AboutResponse">
+            <s:complexType>
+               <s:sequence>
+                  <s:element minOccurs="0" maxOccurs="1" name="AboutResult" type="s:string"/>
+               </s:sequence>
+            </s:complexType>
+         </s:element>
+      </s:schema>
+   </wsdl:types>
+   <wsdl:message name="GetDocumentTypesSoapIn">
+      <wsdl:part name="parameters" element="tns:GetDocumentTypes"/>
+   </wsdl:message>
+   <wsdl:message name="GetDocumentTypesSoapOut">
+      <wsdl:part name="parameters" element="tns:GetDocumentTypesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="GetDocumentPropertiesSoapIn">
+      <wsdl:part name="parameters" element="tns:GetDocumentProperties"/>
+   </wsdl:message>
+   <wsdl:message name="GetDocumentPropertiesSoapOut">
+      <wsdl:part name="parameters" element="tns:GetDocumentPropertiesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="GetDocumentRevisionSoapIn">
+      <wsdl:part name="parameters" element="tns:GetDocumentRevision"/>
+   </wsdl:message>
+   <wsdl:message name="GetDocumentRevisionSoapOut">
+      <wsdl:part name="parameters" element="tns:GetDocumentRevisionResponse"/>
+   </wsdl:message>
+   <wsdl:message name="AddDocumentSoapIn">
+      <wsdl:part name="parameters" element="tns:AddDocument"/>
+   </wsdl:message>
+   <wsdl:message name="AddDocumentSoapOut">
+      <wsdl:part name="parameters" element="tns:AddDocumentResponse"/>
+   </wsdl:message>
+   <wsdl:message name="CheckInSoapIn">
+      <wsdl:part name="parameters" element="tns:CheckIn"/>
+   </wsdl:message>
+   <wsdl:message name="CheckInSoapOut">
+      <wsdl:part name="parameters" element="tns:CheckInResponse"/>
+   </wsdl:message>
+   <wsdl:message name="CheckOutSoapIn">
+      <wsdl:part name="parameters" element="tns:CheckOut"/>
+   </wsdl:message>
+   <wsdl:message name="CheckOutSoapOut">
+      <wsdl:part name="parameters" element="tns:CheckOutResponse"/>
+   </wsdl:message>
+   <wsdl:message name="CancelCheckOutSoapIn">
+      <wsdl:part name="parameters" element="tns:CancelCheckOut"/>
+   </wsdl:message>
+   <wsdl:message name="CancelCheckOutSoapOut">
+      <wsdl:part name="parameters" element="tns:CancelCheckOutResponse"/>
+   </wsdl:message>
+   <wsdl:message name="AddDocumentLinkSoapIn">
+      <wsdl:part name="parameters" element="tns:AddDocumentLink"/>
+   </wsdl:message>
+   <wsdl:message name="AddDocumentLinkSoapOut">
+      <wsdl:part name="parameters" element="tns:AddDocumentLinkResponse"/>
+   </wsdl:message>
+   <wsdl:message name="SetAdditionalIndexesSoapIn">
+      <wsdl:part name="parameters" element="tns:SetAdditionalIndexes"/>
+   </wsdl:message>
+   <wsdl:message name="SetAdditionalIndexesSoapOut">
+      <wsdl:part name="parameters" element="tns:SetAdditionalIndexesResponse"/>
+   </wsdl:message>
+   <wsdl:message name="AboutSoapIn">
+      <wsdl:part name="parameters" element="tns:About"/>
+   </wsdl:message>
+   <wsdl:message name="AboutSoapOut">
+      <wsdl:part name="parameters" element="tns:AboutResponse"/>
+   </wsdl:message>
+   <wsdl:portType name="DocArchiveV201409Soap">
+      <wsdl:operation name="GetDocumentTypes">
+         <wsdl:documentation>Get document types</wsdl:documentation>
+         <wsdl:input message="tns:GetDocumentTypesSoapIn"/>
+         <wsdl:output message="tns:GetDocumentTypesSoapOut"/>
+      </wsdl:operation>
+      <wsdl:operation name="GetDocumentProperties">
+         <wsdl:documentation>Get properties for one or more documents</wsdl:documentation>
+         <wsdl:input message="tns:GetDocumentPropertiesSoapIn"/>
+         <wsdl:output message="tns:GetDocumentPropertiesSoapOut"/>
+      </wsdl:operation>
+      <wsdl:operation name="GetDocumentRevision">
+         <wsdl:documentation>Get document content based on id and type</wsdl:documentation>
+         <wsdl:input message="tns:GetDocumentRevisionSoapIn"/>
+         <wsdl:output message="tns:GetDocumentRevisionSoapOut"/>
+      </wsdl:operation>
+      <wsdl:operation name="AddDocument">
+         <wsdl:documentation>Add new document to the archive</wsdl:documentation>
+         <wsdl:input message="tns:AddDocumentSoapIn"/>
+         <wsdl:output message="tns:AddDocumentSoapOut"/>
+      </wsdl:operation>
+      <wsdl:operation name="CheckIn">
+         <wsdl:documentation>Check in document</wsdl:documentation>
+         <wsdl:input message="tns:CheckInSoapIn"/>
+         <wsdl:output message="tns:CheckInSoapOut"/>
+      </wsdl:operation>
+      <wsdl:operation name="CheckOut">
+         <wsdl:documentation>Check out document for editing</wsdl:documentation>
+         <wsdl:input message="tns:CheckOutSoapIn"/>
+         <wsdl:output message="tns:CheckOutSoapOut"/>
+      </wsdl:operation>
+      <wsdl:operation name="CancelCheckOut">
+         <wsdl:documentation>Cancel checkout</wsdl:documentation>
+         <wsdl:input message="tns:CancelCheckOutSoapIn"/>
+         <wsdl:output message="tns:CancelCheckOutSoapOut"/>
+      </wsdl:operation>
+      <wsdl:operation name="AddDocumentLink">
+         <wsdl:documentation>Add document link - attach document to new key item</wsdl:documentation>
+         <wsdl:input message="tns:AddDocumentLinkSoapIn"/>
+         <wsdl:output message="tns:AddDocumentLinkSoapOut"/>
+      </wsdl:operation>
+      <wsdl:operation name="SetAdditionalIndexes">
+         <wsdl:documentation>Set values of additional indexes on an existing document.</wsdl:documentation>
+         <wsdl:input message="tns:SetAdditionalIndexesSoapIn"/>
+         <wsdl:output message="tns:SetAdditionalIndexesSoapOut"/>
+      </wsdl:operation>
+      <wsdl:operation name="About">
+         <wsdl:documentation>Diagnostics method that checks for presence of nessecary components and database connection</wsdl:documentation>
+         <wsdl:input message="tns:AboutSoapIn"/>
+         <wsdl:output message="tns:AboutSoapOut"/>
+      </wsdl:operation>
+   </wsdl:portType>
+   <wsdl:binding name="DocArchiveV201409Soap" type="tns:DocArchiveV201409Soap">
+      <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+      <wsdl:operation name="GetDocumentTypes">
+         <soap:operation soapAction="http://services.agresso.com/DocArchiveService/DocArchiveV201409/GetDocumentTypes" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="GetDocumentProperties">
+         <soap:operation soapAction="http://services.agresso.com/DocArchiveService/DocArchiveV201409/GetDocumentProperties" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="GetDocumentRevision">
+         <soap:operation soapAction="http://services.agresso.com/DocArchiveService/DocArchiveV201409/GetDocumentRevision" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="AddDocument">
+         <soap:operation soapAction="http://services.agresso.com/DocArchiveService/DocArchiveV201409/AddDocument" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="CheckIn">
+         <soap:operation soapAction="http://services.agresso.com/DocArchiveService/DocArchiveV201409/CheckIn" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="CheckOut">
+         <soap:operation soapAction="http://services.agresso.com/DocArchiveService/DocArchiveV201409/CheckOut" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="CancelCheckOut">
+         <soap:operation soapAction="http://services.agresso.com/DocArchiveService/DocArchiveV201409/CancelCheckOut" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="AddDocumentLink">
+         <soap:operation soapAction="http://services.agresso.com/DocArchiveService/DocArchiveV201409/AddDocumentLink" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="SetAdditionalIndexes">
+         <soap:operation soapAction="http://services.agresso.com/DocArchiveService/DocArchiveV201409/SetAdditionalIndexes" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+      <wsdl:operation name="About">
+         <soap:operation soapAction="http://services.agresso.com/DocArchiveService/DocArchiveV201409/About" style="document"/>
+         <wsdl:input>
+            <soap:body use="literal"/>
+         </wsdl:input>
+         <wsdl:output>
+            <soap:body use="literal"/>
+         </wsdl:output>
+      </wsdl:operation>
+   </wsdl:binding>
+   <wsdl:service name="DocArchiveV201409">
+      <wsdl:documentation>Document Archive web service, version 201409</wsdl:documentation>
+      <wsdl:port name="DocArchiveV201409Soap" binding="tns:DocArchiveV201409Soap">
+         <soap:address location="http://nopc0m8fxq.atrema.deloitte.com/AgrM7WSH/service.svc"/>
+      </wsdl:port>
+   </wsdl:service>
+</wsdl:definitions>

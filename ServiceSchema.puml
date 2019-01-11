@@ -1,0 +1,36 @@
+@startuml
+!define SPRITESURL https://raw.githubusercontent.com/rabelenda/cicon-plantuml-sprites/v1.0/sprites
+!define ICONURL https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/v2.0.0
+
+!includeurl ICONURL/common.puml
+!includeurl SPRITESURL/tomcat.puml
+!includeurl ICONURL/font-awesome/database.puml
+
+
+
+package "Sesam" {
+  ODBC - [Dataset Fakturainfo]
+  cloud "<$tomcat>\nSOAP <-> Sharepoint service" as [SOAP <-> Sharepoint service] 
+    
+  
+}
+ 
+node "Sharepoint server" {
+  [Fakturaer]
+} 
+
+
+node "Agresso SOAP server" {
+    [documents]
+}
+
+FA_DATABASE(db1,Agresso,database,black) {
+	[Faktura info]
+}
+
+[Faktura info] --> [ODBC]
+[Dataset Fakturainfo] --> [SOAP <-> Sharepoint service]
+[SOAP <-> Sharepoint service] --> [documents]
+[documents] --> [SOAP <-> Sharepoint service]
+[SOAP <-> Sharepoint service] --> [Fakturaer]
+@enduml
