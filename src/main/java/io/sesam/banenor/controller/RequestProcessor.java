@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ * This controller processs requests from Sesam to fetch data from Agressom document archive 
  * @author Timur Samkharadze
  */
 @RestController
