@@ -25,11 +25,16 @@ public class P360ServiceConfiguration {
     @Value("${P360_PASSWORD:null}")
     private String p360Password;
 
+    @Value("${P360_DOMAIN:null}")
+    private String p360Domain;
+
     /**
      * Sharepoint blibliteknavn hvor dokumenter fra P360 skal synkroniseres
      */
     @Value("${P360_SP_LIB_NAME:null}")
     private String p360SpLibraryName;
+
+    private final boolean debug = false;
 
     public String getP360Username() {
         return p360Username;
@@ -41,6 +46,14 @@ public class P360ServiceConfiguration {
 
     public String getP360SpLibraryName() {
         return p360SpLibraryName;
+    }
+
+    public boolean isDebug() {
+        return debug;
+    }
+
+    String getDomain() {
+        return this.p360Domain == null ? "" : this.p360Domain;
     }
 
 }
