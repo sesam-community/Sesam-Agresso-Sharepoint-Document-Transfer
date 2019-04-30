@@ -8,6 +8,9 @@ cache:
   directories:
   - .autoconf
   - $HOME/.m2
+  
+before_install:
+  - chmod +x mvnw
 
 notifications:
   email: false
