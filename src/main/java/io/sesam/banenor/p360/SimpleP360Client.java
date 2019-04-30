@@ -74,14 +74,14 @@ public class SimpleP360Client {
         byte[] fileData = httpclient.execute(fileReq, new FileDownloadResponseHandler(), context);
 
         if (p360Config.isDebug()) {
-            try (FileOutputStream os = new FileOutputStream("tmp_file")) {
+            try ( FileOutputStream os = new FileOutputStream("tmp_file")) {
                 os.write(fileData);
             }
 
             FileReader fileReader = new FileReader("tmp_file");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String s = bufferedReader.readLine();
-            
+
             while (s != null) {
                 LOG.debug(s);
                 s = bufferedReader.readLine();
@@ -100,10 +100,11 @@ public class SimpleP360Client {
         public byte[] handleResponse(HttpResponse response) throws ClientProtocolException, IOException {
             StatusLine res = response.getStatusLine();
             LOG.info("Request executed with code {} {}", res.getStatusCode(), res.getReasonPhrase());
+            //won't work in dev/test env as it always return 200 and always return file content (with stack trace and so on)
             if (res.getStatusCode() >= 300) {
                 throw new ClientProtocolException(res.getStatusCode() + " " + res.getReasonPhrase());
             }
-            try (InputStream source = response.getEntity().getContent()) {
+            try ( InputStream source = response.getEntity().getContent()) {
                 ByteArrayOutputStream os = new ByteArrayOutputStream();
 
                 byte[] buffer = new byte[1024];
