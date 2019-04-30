@@ -62,7 +62,7 @@ public class SimpleP360Client {
         HttpClientContext context = HttpClientContext.create();
 
         CredentialsProvider credsProvider = new BasicCredentialsProvider();
-        NTCredentials creds = new NTCredentials(p360Config.getP360Username(), p360Config.getP360Password(), "", "utvikling-jbv");
+        NTCredentials creds = new NTCredentials(p360Config.getP360Username(), p360Config.getP360Password(), "", p360Config.getDomain());
         credsProvider.setCredentials(AuthScope.ANY, creds);
         List<String> authtypes = new ArrayList<>();
         authtypes.add(AuthSchemes.NTLM);
@@ -73,21 +73,20 @@ public class SimpleP360Client {
         LOG.info("Trying to download file from URL {}", url);
         byte[] fileData = httpclient.execute(fileReq, new FileDownloadResponseHandler(), context);
 
-        //write file on disk
-//        try (FileOutputStream os = new FileOutputStream("tmp_file")) {
-//            os.write(fileData);
-//        }
-//
-//        FileReader fileReader
-//                = new FileReader("tmp_file");
-//
-//        BufferedReader bufferedReader
-//                = new BufferedReader(fileReader);
-//        String s = bufferedReader.readLine();
-//        while (s != null) {
-//            LOG.info(s);
-//            s = bufferedReader.readLine();
-//        }
+        if (p360Config.isDebug()) {
+            try (FileOutputStream os = new FileOutputStream("tmp_file")) {
+                os.write(fileData);
+            }
+
+            FileReader fileReader = new FileReader("tmp_file");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            String s = bufferedReader.readLine();
+            
+            while (s != null) {
+                LOG.debug(s);
+                s = bufferedReader.readLine();
+            }
+        }
 
         return fileData;
     }
