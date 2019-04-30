@@ -44,11 +44,11 @@ public class EntitiesController {
      * "http://www.loremipsum.com/file.docx", "metadata": [{"Author":"Alan Smithee"}, {"Documenttype":"Word document
      * (docx)"}]}]' http://localhost:8000/api/entities
      *
-     * To delete a file send a json only containing the filename. Example: curl --data '[{"filename":
-     * "loremipsum.docx"}]' http://localhost:8000/api/entities
+     * To delete a file send a json only containing the filename or with _deleted property equal to true. 
+     * Example: curl --data '[{"filename": "loremipsum.docx"}]' http://localhost:8000/api/entities
      *
-     * @param p360Files
-     * @return
+     * @param p360Files json array
+     * @return json array
      * @throws org.springframework.boot.configurationprocessor.json.JSONException
      */
     @RequestMapping(value = "/api/p360/entities", method = {RequestMethod.POST})
@@ -60,11 +60,10 @@ public class EntitiesController {
                 spClient.deleteFileFromLibrary(item.filename, p360Config.getP360SpLibraryName());
                 continue;
             }
-            LOG.info("Syncing {} to Sharepoint");
+            LOG.info("Syncing {} to Sharepoint", item.filename);
             LOG.info("Trying to fetch file from url {}",item.url);
             byte[] fileArray = p360Client.downloadFileFromUrl(item.url);
             LOG.info("Downloaded file of size {}", fileArray.length);
-            //TODO store file to Sharepoint
             spClient.uploadFileContentWithMetadata( p360Config.getP360SpLibraryName(),item.filename, fileArray, item.metadata);
 
         }
