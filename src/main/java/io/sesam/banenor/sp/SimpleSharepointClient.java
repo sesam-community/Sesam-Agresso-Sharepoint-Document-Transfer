@@ -193,6 +193,10 @@ public class SimpleSharepointClient {
         }
         payload.put("Organisasjonsnummer", factura.comp_reg_no);
 
+        payload.put("Jernbaneforetak", factura.Foretak);
+        
+        payload.put("JernbaneforetaksID", factura.ForetakID);
+
         LOG.info("Payload to send: {}", payload);
 
         updateFileMetadataRequest.addHeader("Content-Type", "application/json; odata=verbose");
