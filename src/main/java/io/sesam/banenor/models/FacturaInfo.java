@@ -53,6 +53,12 @@ public class FacturaInfo {
     @JsonProperty("comp_reg_no")
     public final String comp_reg_no;
 
+    @JsonProperty("ForetakID")
+    public final String ForetakID;
+
+    @JsonProperty("Foretak")
+    public final String Foretak;
+
     /**
      * operation status returned back with entity
      */
@@ -76,7 +82,7 @@ public class FacturaInfo {
         this._status = status;
     }
 
-    public FacturaInfo(String _id, String doc_guid, String doc_type, String apar_id, String client, String cur_amount, String currency, String due_date, String last_update, String rest_curr, int sequence_no, String status, String voucher_date, long voucher_no, String comp_reg_no) {
+    public FacturaInfo(String _id, String doc_guid, String doc_type, String apar_id, String client, String cur_amount, String currency, String due_date, String last_update, String rest_curr, int sequence_no, String status, String voucher_date, long voucher_no, String comp_reg_no, String ForetakID, String Foretak) {
         this._id = _id;
         this.doc_guid = doc_guid;
         this.doc_type = doc_type;
@@ -92,11 +98,13 @@ public class FacturaInfo {
         this.voucher_date = voucher_date;
         this.voucher_no = voucher_no;
         this.comp_reg_no = comp_reg_no;
+        this.ForetakID = ForetakID;
+        this.Foretak = Foretak;
     }
 
     @Override
     public String toString() {
-        return "FacturaInfo{" + "_id=" + _id + ", doc_guid=" + doc_guid + ", doc_type=" + doc_type + ", apar_id=" + apar_id + ", client=" + client + ", cur_amount=" + cur_amount + ", currency=" + currency + ", due_date=" + due_date + ", last_update=" + last_update + ", rest_curr=" + rest_curr + ", sequence_no=" + sequence_no + ", status=" + status + ", voucher_date=" + voucher_date + ", voucher_no=" + voucher_no + ", _status=" + _status + ", error=" + error + '}';
+        return "FacturaInfo{" + "_id=" + _id + ", doc_guid=" + doc_guid + ", doc_type=" + doc_type + ", apar_id=" + apar_id + ", client=" + client + ", cur_amount=" + cur_amount + ", currency=" + currency + ", due_date=" + due_date + ", last_update=" + last_update + ", rest_curr=" + rest_curr + ", sequence_no=" + sequence_no + ", status=" + status + ", voucher_date=" + voucher_date + ", voucher_no=" + voucher_no + ", _status=" + _status + ", error=" + error + ", ForetakID=" + ForetakID + ", Foretak=" + Foretak + '}';
     }
 
 }
