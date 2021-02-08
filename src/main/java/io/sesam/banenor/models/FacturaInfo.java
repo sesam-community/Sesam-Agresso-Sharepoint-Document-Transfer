@@ -104,7 +104,7 @@ public class FacturaInfo {
 
     @Override
     public String toString() {
-        return "FacturaInfo{" + "_id=" + _id + ", doc_guid=" + doc_guid + ", doc_type=" + doc_type + ", apar_id=" + apar_id + ", client=" + client + ", cur_amount=" + cur_amount + ", currency=" + currency + ", due_date=" + due_date + ", last_update=" + last_update + ", rest_curr=" + rest_curr + ", sequence_no=" + sequence_no + ", status=" + status + ", voucher_date=" + voucher_date + ", voucher_no=" + voucher_no + ", _status=" + _status + ", error=" + error + ", ForetakID=" + ForetakID + ", Foretak=" + Foretak + '}';
+        return "FacturaInfo{" + "_id=" + _id + ", doc_guid=" + doc_guid + ", doc_type=" + doc_type + ", apar_id=" + apar_id + ", client=" + client + ", cur_amount=" + cur_amount + ", currency=" + currency + ", due_date=" + due_date + ", last_update=" + last_update + ", rest_curr=" + rest_curr + ", sequence_no=" + sequence_no + ", status=" + status + ", voucher_date=" + voucher_date + ", voucher_no=" + voucher_no + ", _status=" + _status + ", error=" + error + ", ForetakID=" + ForetakID + ", Foretak=" + Foretak + "}";
     }
 
 }
