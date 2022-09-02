@@ -60,7 +60,7 @@ public class SimpleSharepointClient {
                 //.setSSLSocketFactory(sslsf).disableRedirectHandling()
                 .build();
 
-        HttpHost target = new HttpHost(spConfig.getBaseUrl(), 80, "http");
+        HttpHost target = new HttpHost(spConfig.getBaseUrl(), 443, "https");
         HttpClientContext context = HttpClientContext.create();
 
         String formDigest;
@@ -220,7 +220,7 @@ public class SimpleSharepointClient {
                 //.setSSLSocketFactory(sslsf).disableRedirectHandling()
                 .build();
 
-        HttpHost target = new HttpHost(spConfig.getBaseUrl(), 80, "http");
+        HttpHost target = new HttpHost(spConfig.getBaseUrl(), 443, "https");
         HttpClientContext context = HttpClientContext.create();
 
         String formDigest;
@@ -307,7 +307,7 @@ public class SimpleSharepointClient {
                 //.setSSLSocketFactory(sslsf).disableRedirectHandling()
                 .build();
 
-        HttpHost target = new HttpHost(spConfig.getBaseUrl(), 80, "http");
+        HttpHost target = new HttpHost(spConfig.getBaseUrl(), 443, "https");
         HttpClientContext context = HttpClientContext.create();
 
         String formDigest;
