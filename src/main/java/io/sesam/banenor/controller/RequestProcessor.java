@@ -68,7 +68,7 @@ public class RequestProcessor {
                 spClient.uploadFileContent(fileName, fileContent, f);
                 
                 f.setError(false);
-                f.setStatus(new StringBuilder("Uploaded successfully ").append(new Date().toString()).toString());
+                f.setStatus(new StringBuilder("Uploaded successfully").append(new Date().toString()).toString());
                 
             } catch (Exception e) {
                 LOG.error("Something went wrong:", e);
